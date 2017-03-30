@@ -84,14 +84,14 @@ class AntiSpamControl extends \Nette\Forms\Controls\BaseControl {
 	 * @var array
 	 */
 	private $numberStrings = [
-		"Nula", "Jedna", "Dva", "Tři", "Čtyři", "Pět", "Šest", "Sedm", "Osm", "Devět"
+		"Nula", "Jeden", "Dva", "Tri", "Štyri", "Pät", "Šesť", "Sedem", "Osem", "Deväť"
 	];
 
 	/**
 	 * Otázka vyzívacající užitele k výpočtu.
 	 * @var string
 	 */
-	private $question = "Vypočítejte";
+	private $question = "Vypočítajte";
 
 	/**
 	 * Výsledek početního příkladu.
@@ -293,13 +293,13 @@ class AntiSpamControl extends \Nette\Forms\Controls\BaseControl {
 			$hiddenGroup->class[] = $this->hiddenClass;
 		}
 
-		$textInput = \Nette\Utils\Html::el("input type='text' name='" . $this->getHtmlName() . "-name'");
-		$hiddenGroup->addHtml($textInput);
+		$textInput = \Nette\Utils\Html::el("input type='text' name='" . $this->getHtmlName() . "-name'")->addClass('form-control');
+		$hiddenGroup->add($textInput);
 
 		$checkBox = \Nette\Utils\Html::el("input type='checkbox' name='" . $this->getHtmlName() . "-terms'");
-		$hiddenGroup->addHtml($checkBox);
+		$hiddenGroup->add($checkBox);
 
-		$group->addHtml($hiddenGroup);
+		$group->add($hiddenGroup);
 	}
 
 	/**
@@ -319,17 +319,17 @@ class AntiSpamControl extends \Nette\Forms\Controls\BaseControl {
 			"id" => $inputId,
 			"name" => $inputName
 		]);
-		$javaScriptGroup->addHtml($this->questionLabelPrototype);
-		$javaScriptGroup->addHtml($this->questionInputPrototype);
+		$javaScriptGroup->add($this->questionLabelPrototype);
+		$javaScriptGroup->add($this->questionInputPrototype);
 
 		$script = \Nette\Utils\Html::el("script");
 		$script->setHtml("
 			document.getElementById('$inputId').value = " . $this->result . ";
 			document.getElementById('$groupId').style.display = 'none';
 		");
-		$javaScriptGroup->addHtml($script);
+		$javaScriptGroup->add($script);
 
-		$group->addHtml($javaScriptGroup);
+		$group->add($javaScriptGroup);
 	}
 
 	/**
